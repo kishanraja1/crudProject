@@ -7,6 +7,7 @@ const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
+const Class = require('./models/schedule.js')
 //___________________
 //Port
 //___________________
@@ -47,10 +48,42 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //___________________
 // Routes
 //___________________
-//localhost:3000
-app.get('/' , (req, res) => {
-  res.send('Hello World!');
+//localhost:3000 - Home Page
+app.get('/schedule' , (req, res) => {
+  Class.find({}, (error, allClasses) => {
+    res.render('home.ejs', {
+      classes: allClasses
+    });
+  })
 });
+
+// Add new class page
+app.get('/schedule/newClass', (req, res) => {
+  res.render('new.ejs')
+})
+
+// create new class
+app.post('/schedule', (req, res) => {
+  Class.create(req.body, (err, createdClass) => {
+    res.redirect('/schedule')
+  })
+})
+
+// show pages
+app.get('/schedule/:id', (req,res) => {
+  Class.findById(req.params.id, (err, foundClass) => {
+    res.render('show.ejs',{
+    classes:foundClass
+    })
+  })
+})
+
+//delete Routes
+app.delete('/schedule/:id', (req, res) => {
+  Class.findByIdAndRemove(req.params.id, (err, data) => {
+    res.redirect('/schedule')
+  })
+})
 
 //___________________
 //Listener

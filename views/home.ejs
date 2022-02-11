@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Class Schedule Page</h1>
+    <a href="/schedule/newClass">Add a new class</a>
+    <ul>
+      <% for (let i = 0; i < classes.length; i++) {%>
+        <li>
+          <a href="/schedule/<%=classes[i].id%>">
+          <%=classes[i].className%>
+          </a>
+
+          <form action="/schedule/<%=classes[i].id%>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete">
+          </form>
+        </li>
+      <%}%>
+    </ul>
+  </body>
+</html>
