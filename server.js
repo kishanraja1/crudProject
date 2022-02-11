@@ -48,34 +48,18 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //___________________
 // Routes
 //___________________
-//localhost:3000 - Home Page
-app.get('/schedule' , (req, res) => {
-  Class.find({}, (error, allClasses) => {
-    res.render('home.ejs', {
-      classes: allClasses
-    });
-  })
-});
 
-// Add new class page
-app.get('/schedule/newClass', (req, res) => {
-  res.render('new.ejs')
-})
+//edit route
+// app.put('/schedule/:id', (req,res)=>{
+//   Class.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel) => {
+//     res.send(updatedModel)
+//   })
+// })
 
-// create new class
-app.post('/schedule', (req, res) => {
-  Class.create(req.body, (err, createdClass) => {
-    res.redirect('/schedule')
-  })
-})
-
-// show pages
-app.get('/schedule/:id', (req,res) => {
-  Class.findById(req.params.id, (err, foundClass) => {
-    res.render('show.ejs',{
-    classes:foundClass
+app.put('/schedule/:id', (req, res) => {
+    Class.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel) => {
+        res.redirect('/schedule')
     })
-  })
 })
 
 //delete Routes
@@ -88,17 +72,50 @@ app.delete('/schedule/:id', (req, res) => {
 app.get('/schedule/:id/edit', (req, res) => {
   Class.findById(req.params.id, (err, foundClass) => {
     res.render(
-      'edit.ejs', {
-        classes:foundClass
+      'edit.ejs',
+      {
+        course:foundClass
       })
   })
 })
 
-app.put('/schedule/:id', (req, res) => {
-  Class.findByIdAndUpdate(req.params.id, req.body, (err, updatedData) => {
+// Add new class page
+app.get('/schedule/newClass', (req, res) => {
+  res.render('new.ejs')
+})
+
+//localhost:3000 - Home Page
+app.get('/schedule' , (req, res) => {
+  Class.find({}, (error, allClasses) => {
+    res.render(
+      'home.ejs', {
+      classes: allClasses
+    });
+  })
+});
+
+// show pages
+app.get('/schedule/:id', (req,res) => {
+  Class.findById(req.params.id, (err, foundClass) => {
+    res.render(
+      'show.ejs',{
+    classes:foundClass
+    })
+  })
+})
+
+// create new class
+app.post('/schedule', (req, res) => {
+  Class.create(req.body, (err, createdClass) => {
     res.redirect('/schedule')
   })
 })
+
+
+
+
+
+
 
 //___________________
 //Listener
