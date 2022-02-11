@@ -8,7 +8,15 @@
     <h1>Add A New Class to The Schedule!</h1>
     <form action="/schedule" method="POST">
       Activity: <input type="text" name="className" value=""><br/>
-      Day of The Week: <input type="text" name="date" value=""/><br/>
+      Day of The Week: <select name="date">
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+      </select><br/>
       Instructor: <input type="text" name="instructor" value=""/><br/>
       Capacity: <input type="text" name="capacity" value=""/><br/>
       <input type="submit" value="Add Class"><br>

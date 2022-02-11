@@ -11,7 +11,15 @@
 
         Activity: <input type="text" name="className" value="<%=course.className%>"/><br/>
 
-        Day of The Week: <input type="text" name="date" value="<%=course.date%>"/><br/>
+        Day of The Week: <select name="date" value='<%=course.date%>'>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select><br/>
 
         Instructor: <input type="text" name="instructor" value="<%=course.instructor%>"/><br/>
 

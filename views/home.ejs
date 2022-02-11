@@ -1,28 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>Class Schedule Page</h1>
-    <a href="/schedule/newClass">Add a new class</a>
 
-    <table id="lecturesTable">
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Instructor</th>
-          <th>Capacity</th>
-        </tr>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <h1>Class Schedule Page</h1>
+  <a href="/schedule/newClass">Add a new class</a>
+  <h3>Monday</h3>
+
+  <table id="lecturesTable">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Instructor</th>
+        <th>Capacity</th>
+      </tr>
       <thead>
       <tbody id="lecturesTableData">
         <% for (let i = 0; i < classes.length; i++) {%>
-          <tr>
+          <%if(classes[i].date==='Monday'){%>
+            <%if(classes.length !== 0){%>
+              <tr>
+
+                <td>
+                  <a href="/schedule/<%=classes[i].id%>">
+                    <%=classes[i].className%>
+                  </a>
+                </td>
+                <td>
+                  <%=classes[i].instructor%>
+                </td>
+                <td>
+                  <%=classes[i].capacity%>
+                </td>
+                <td>
+                  <form action='/schedule/<%=classes[i].id%>?_method=DELETE' method='POST'>
+                    <input type="submit" value="Delete" />
+                  </form>
+
+                </td>
+                <td>
+                  <button type="button" name="button">
+                    <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+                  </button>
+                </td>
+
+              </tr>
+            <%} else {%>
+              <tr>
+                <td>no classes today</td>
+              </tr>
+            <%}%>
+          <%}%>
+        <%}%>
+      </tbody>
+  </table>
+  <button onclick="sortInstructorAscending()">Instructor Ascending</button>
+
+
+  <h3>Tuesday</h3>
+  <table id="lecturesTable">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Instructor</th>
+        <th>Capacity</th>
+      </tr>
+      <thead>
+      <tbody id="lecturesTableData">
+        <% for (let i = 0; i < classes.length; i++) {%>
+        <%if(classes[i].date==='Tuesday'){%>
+        <tr>
 
           <td>
             <a href="/schedule/<%=classes[i].id%>">
-            <%=classes[i].className%>
+              <%=classes[i].className%>
             </a>
           </td>
           <td>
@@ -33,18 +88,255 @@
           </td>
           <td>
             <form action='/schedule/<%=classes[i].id%>?_method=DELETE' method='POST'>
-              <input type="submit" value="DELETE" />
+              <input type="submit" value="Delete" />
             </form>
+
           </td>
           <td>
-            <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+            <button type="button" name="button">
+              <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+            </button>
           </td>
-          </tr>
+
+        </tr>
         <%}%>
-        </tbody>
-      </table>
+              <%}%>
+      </tbody>
+  </table>
+
+  <h3>Wednesday</h3>
+  <table id="lecturesTable">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Instructor</th>
+        <th>Capacity</th>
+      </tr>
+      <thead>
+      <tbody id="lecturesTableData">
+        <% for (let i = 0; i < classes.length; i++) {%>
+        <%if(classes[i].date==='Wednesday'){%>
+        <tr>
+
+          <td>
+            <a href="/schedule/<%=classes[i].id%>">
+              <%=classes[i].className%>
+            </a>
+          </td>
+          <td>
+            <%=classes[i].instructor%>
+          </td>
+          <td>
+            <%=classes[i].capacity%>
+          </td>
+          <td>
+            <form action='/schedule/<%=classes[i].id%>?_method=DELETE' method='POST'>
+              <input type="submit" value="Delete" />
+            </form>
+
+          </td>
+          <td>
+            <button type="button" name="button">
+              <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+            </button>
+          </td>
+
+        </tr>
+        <%}%>
+              <%}%>
+      </tbody>
+  </table>
+
+  <h3>Thursday</h3>
+  <table id="lecturesTable">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Instructor</th>
+        <th>Capacity</th>
+      </tr>
+      <thead>
+      <tbody id="lecturesTableData">
+        <% for (let i = 0; i < classes.length; i++) {%>
+        <%if(classes[i].date==='Thursday'){%>
+        <tr>
+
+          <td>
+            <a href="/schedule/<%=classes[i].id%>">
+              <%=classes[i].className%>
+            </a>
+          </td>
+          <td>
+            <%=classes[i].instructor%>
+          </td>
+          <td>
+            <%=classes[i].capacity%>
+          </td>
+          <td>
+            <form action='/schedule/<%=classes[i].id%>?_method=DELETE' method='POST'>
+              <input type="submit" value="Delete" />
+            </form>
+
+          </td>
+          <td>
+            <button type="button" name="button">
+              <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+            </button>
+          </td>
+
+        </tr>
+        <%}%>
+              <%}%>
+      </tbody>
+  </table>
+
+  <h3>Friday</h3>
+  <table id="lecturesTable">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Instructor</th>
+        <th>Capacity</th>
+      </tr>
+      <thead>
+      <tbody id="lecturesTableData">
+        <% for (let i = 0; i < classes.length; i++) {%>
+        <%if(classes[i].date==='Friday'){%>
+        <tr>
+
+          <td>
+            <a href="/schedule/<%=classes[i].id%>">
+              <%=classes[i].className%>
+            </a>
+          </td>
+          <td>
+            <%=classes[i].instructor%>
+          </td>
+          <td>
+            <%=classes[i].capacity%>
+          </td>
+          <td>
+            <form action='/schedule/<%=classes[i].id%>?_method=DELETE' method='POST'>
+              <input type="submit" value="Delete" />
+            </form>
+
+          </td>
+          <td>
+            <button type="button" name="button">
+              <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+            </button>
+          </td>
+
+        </tr>
+        <%}%>
+              <%}%>
+      </tbody>
+  </table>
+
+  <h3>Saturday</h3>
+  <table id="lecturesTable">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Instructor</th>
+        <th>Capacity</th>
+      </tr>
+      <thead>
+      <tbody id="lecturesTableData">
+        <% for (let i = 0; i < classes.length; i++) {%>
+        <%if(classes[i].date==='Saturday'){%>
+        <tr>
+
+          <td>
+            <a href="/schedule/<%=classes[i].id%>">
+              <%=classes[i].className%>
+            </a>
+          </td>
+          <td>
+            <%=classes[i].instructor%>
+          </td>
+          <td>
+            <%=classes[i].capacity%>
+          </td>
+          <td>
+            <form action='/schedule/<%=classes[i].id%>?_method=DELETE' method='POST'>
+              <input type="submit" value="Delete" />
+            </form>
+
+          </td>
+          <td>
+            <button type="button" name="button">
+              <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+            </button>
+          </td>
+
+        </tr>
+        <%}%>
+              <%}%>
+      </tbody>
+  </table>
+
+  <h3>Sunday</h3>
+  <table id="lecturesTable">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Instructor</th>
+        <th>Capacity</th>
+      </tr>
+      <thead>
+      <tbody id="lecturesTableData">
+        <% for (let i = 0; i < classes.length; i++) {%>
+        <%if(classes[i].date==='Sunday'){%>
+        <tr>
+
+          <td>
+            <a href="/schedule/<%=classes[i].id%>">
+              <%=classes[i].className%>
+            </a>
+          </td>
+          <td>
+            <%=classes[i].instructor%>
+          </td>
+          <td>
+            <%=classes[i].capacity%>
+          </td>
+          <td>
+            <form action='/schedule/<%=classes[i].id%>?_method=DELETE' method='POST'>
+              <input type="submit" value="Delete" />
+            </form>
+
+          </td>
+          <td>
+            <button type="button" name="button">
+              <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+            </button>
+          </td>
+
+        </tr>
+        <%}%>
+              <%}%>
+      </tbody>
+  </table>
 
 
-    </ul>
-  </body>
+
+
+  </ul>
+</body>
+
 </html>
+
+
+
+<script>
+
+    function sortInstructorAscending(){
+        classes.sort(function(a, b) {
+            return parseFloat(b.className) - parseFloat(a.className);
+        });
+        loadTableData(classes);
+    }
+
+
+</script>
