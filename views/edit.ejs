@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Edit Class</h1
+      <form action="/schedule/<%=classes.id%>?_method=PUT" method="POST">
+        Activity: <input type="text" name="className" value="<%=classes.className%>"/><br/>
+        Time: <input type="text" name="time"><br/>
+        Date: <input type="text" name="date"><br/>
+        Instructor: <input type="text" name="instructor"><br/>
+        <input type="submit" value="Edit Class"><br>
+        <a href="/schedule">Back to Homepage</a>
+      </form>
+  </body>
+</html>

@@ -85,6 +85,21 @@ app.delete('/schedule/:id', (req, res) => {
   })
 })
 
+app.get('/schedule/:id/edit', (req, res) => {
+  Class.findById(req.params.id, (err, foundClass) => {
+    res.render(
+      'edit.ejs', {
+        classes:foundClass
+      })
+  })
+})
+
+app.put('/schedule/:id', (req, res) => {
+  Class.findByIdAndUpdate(req.params.id, req.body, (err, updatedData) => {
+    res.redirect('/schedule')
+  })
+})
+
 //___________________
 //Listener
 //___________________
