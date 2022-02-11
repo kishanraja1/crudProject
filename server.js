@@ -49,13 +49,6 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 
-//edit route
-// app.put('/schedule/:id', (req,res)=>{
-//   Class.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel) => {
-//     res.send(updatedModel)
-//   })
-// })
-
 app.put('/schedule/:id', (req, res) => {
     Class.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel) => {
         res.redirect('/schedule')
