@@ -67,14 +67,19 @@ app.get('/schedule/:id/edit', (req, res) => {
     res.render(
       'edit.ejs',
       {
-        course:foundClass
+        course:foundClass,
+        tabTitle: 'Edit'
       })
   })
 })
 
 // Add new class page
 app.get('/schedule/newClass', (req, res) => {
-  res.render('new.ejs')
+  res.render('new.ejs',{
+    tabTitle:'Create'
+  }
+
+)
 })
 
 //localhost:3000 - Home Page
@@ -82,7 +87,8 @@ app.get('/schedule' , (req, res) => {
   Class.find({}, (error, allClasses) => {
     res.render(
       'home.ejs', {
-      classes: allClasses
+      classes: allClasses,
+      tabTitle: 'Home'
     });
   })
 });
@@ -92,7 +98,8 @@ app.get('/schedule/:id', (req,res) => {
   Class.findById(req.params.id, (err, foundClass) => {
     res.render(
       'show.ejs',{
-    classes:foundClass
+    classes:foundClass,
+    tabTitle: (req.params.className)
     })
   })
 })

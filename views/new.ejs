@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title></title>
+<%- include ('./partials/head.ejs') %>
   </head>
   <body>
-    <h1>Add A New Class to The Schedule!</h1>
+    <%- include ('./partials/nav.ejs') %>
+    <h2>Add A New Class to The Schedule!</h2>
     <form action="/schedule" method="POST">
       Activity: <input type="text" name="className" value=""><br/>
       Day of The Week: <select name="date">

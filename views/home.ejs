@@ -2,13 +2,15 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
+<%- include ('./partials/head.ejs') %>
 </head>
 
 <body>
-  <h1>Class Schedule Page</h1>
+<%- include ('./partials/nav.ejs') %>
+  <h2>Class Schedule Page</h1>
   <a href="/schedule/newClass">Add a new class</a>
+
+  <div class="accordion">
   <h3>Monday</h3>
 
   <table id="lecturesTable">
@@ -20,6 +22,7 @@
       </tr>
       <thead>
       <tbody id="lecturesTableData">
+
         <% for (let i = 0; i < classes.length; i++) {%>
           <%if(classes[i].date==='Monday'){%>
             <%if(classes.length !== 0){%>
@@ -56,9 +59,10 @@
             <%}%>
           <%}%>
         <%}%>
+
       </tbody>
   </table>
-  <button onclick="sortInstructorAscending()">Instructor Ascending</button>
+
 
 
   <h3>Tuesday</h3>
@@ -328,15 +332,21 @@
 </html>
 
 
+<script type="text/javascript">
 
-<script>
+$(document).ready(function(){ $(".accordion table").hide();
 
-    function sortInstructorAscending(){
-        classes.sort(function(a, b) {
-            return parseFloat(b.className) - parseFloat(a.className);
-        });
-        loadTableData(classes);
-    }
+ $(".accordion h3").click(function(){ $(this).next("table").slideToggle("slow");
+ });
+});
 
+
+
+function sortInstructorAscending(){
+    classes.sort(function(a, b) {
+        return parseFloat(b.className) - parseFloat(a.className);
+    });
+    loadTableData(classes);
+}
 
 </script>
