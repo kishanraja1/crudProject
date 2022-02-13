@@ -111,6 +111,14 @@ app.post('/schedule', (req, res) => {
   })
 })
 
+app.get('/' , (req, res) => {
+    res.render(
+      'index.ejs', {
+      tabTitle: 'Home'
+    });
+  })
+
+
 
 
 //___________________
