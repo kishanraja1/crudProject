@@ -8,6 +8,7 @@ const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
 const Class = require('./models/schedule.js')
+const Merch = require('./models/merch.js')
 //___________________
 //Port
 //___________________
@@ -118,15 +119,23 @@ app.get('/' , (req, res) => {
     });
   })
 
+//get route - static pricing page
   app.get('/pricing', (req, res) => {
     res.render('price.ejs', {
       tabTitle: 'Pricing'
     })
   })
 
+// get route merch page
   app.get('/merchandise', (req, res) => {
     res.render('merch.ejs', {
       tabTitle: 'Merchandise'
+    })
+  })
+
+  app.get('/cart', (req,res) => {
+    res.render('cart.ejs',{
+      tabTitle: 'Cart'
     })
   })
 
