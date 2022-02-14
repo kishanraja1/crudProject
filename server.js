@@ -118,6 +118,12 @@ app.get('/' , (req, res) => {
     });
   })
 
+  app.get('/pricing', (req, res) => {
+    res.render('price.ejs', {
+      tabTitle: 'Pricing'
+    })
+  })
+
 
 
 
