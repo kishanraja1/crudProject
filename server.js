@@ -124,6 +124,12 @@ app.get('/' , (req, res) => {
     })
   })
 
+  app.get('/merchandise', (req, res) => {
+    res.render('merch.ejs', {
+      tabTitle: 'Merchandise'
+    })
+  })
+
 
 
 
