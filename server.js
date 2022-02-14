@@ -50,6 +50,8 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 
+///////////////// Schedule Related Routes ///////////////////////
+
 app.put('/schedule/:id', (req, res) => {
     Class.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel) => {
         res.redirect('/schedule')
@@ -126,6 +128,7 @@ app.get('/' , (req, res) => {
     })
   })
 
+///////////////////// Merchandise related route ////////////////////
 // get route merch page
   app.get('/merchandise', (req, res) => {
     res.render('merch.ejs', {
@@ -133,9 +136,22 @@ app.get('/' , (req, res) => {
     })
   })
 
+
+
   app.get('/cart', (req,res) => {
-    res.render('cart.ejs',{
-      tabTitle: 'Cart'
+    Merch.find({}, (err,foundMerch) => {
+      res.render('cart.ejs',{
+        merchandise:foundMerch,
+        tabTitle: 'Cart'
+      })
+    })
+    })
+
+
+  // create new class
+  app.post('/cart', (req, res) => {
+    Merch.create(req.body, (err, createdClass) => {
+      res.redirect('/cart')
     })
   })
 

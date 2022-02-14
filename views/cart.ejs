@@ -6,5 +6,18 @@
 <%- include ('./partials/nav.ejs') %>
   <body>
     <h1>Your Cart</h1>
+    <% for (let i = 0; i < merchandise.length; i++) {%>
+          <tr>
+            <td>
+              <%=merchandise[i].time%>
+            </td>
+
+            <td>
+              <a href="/schedule/<%=merchandise[i].id%>">
+                <%=merchandise[i].id%>
+              </a>
+            </td>
+          </tr>
+      <%}%>
   </body>
 </html>

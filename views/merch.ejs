@@ -5,6 +5,16 @@
   </head>
       <%- include ('./partials/nav.ejs') %>
   <body>
-    <h1>Hello</h1>
+    <h1>Merchandise</h1>
+
+    <form action="/cart" method="POST">
+      <h4 name='name' value='shirt'>T-Shirt</h4>
+      <h4 name='price' value=15>$15</h4>
+      <img name='image' value='shirt.jpeg' src="shirt.jpeg" alt=""><br/>
+      <input type="submit" value="Add To Cart"><br>
+    </form>
+
+
+
   </body>
 </html>
