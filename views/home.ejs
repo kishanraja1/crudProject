@@ -26,9 +26,7 @@
 
         <% for (let i = 0; i < classes.length; i++) {%>
           <%if(classes[i].date==='Monday'){%>
-            <%if(classes.length !== 0){%>
               <tr>
-
                 <td>
                   <%=classes[i].time%>
                 </td>
@@ -45,29 +43,23 @@
                   <%=classes[i].capacity%>
                 </td>
                 <td>
+                  <button type="button" name="button">
+                    <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
+                  </button>
+                </td>
+                <td>
                   <form action='/schedule/<%=classes[i].id%>?_method=DELETE' method='POST'>
                     <input type="submit" value="Delete" />
                   </form>
 
                 </td>
-                <td>
-                  <button type="button" name="button">
-                    <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
-                  </button>
-                </td>
-
               </tr>
-            <%} else {%>
-              <tr>
-                <td>no classes today</td>
-              </tr>
-            <%}%>
           <%}%>
         <%}%>
 
       </tbody>
   </table>
-
+<button onclick="sortInstructorAscending()">Instructor Ascending</button>
 
 
   <h3>Tuesday</h3>
@@ -345,13 +337,23 @@ $(document).ready(function(){ $(".accordion table").hide();
  });
 });
 
+const sortInstructorAscending = () => {
+  classes.sort(function(a, b) {
+  let nameA = a.instructor.toUpperCase(); // ignore upper and lowercase
+  let nameB = b.instructor.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
 
-
-function sortInstructorAscending(){
-    classes.sort(function(a, b) {
-        return parseFloat(b.className) - parseFloat(a.className);
-    });
-    loadTableData(classes);
+  // names must be equal
+  return 0;
+});
 }
+
+
+
 
 </script>
