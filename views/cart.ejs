@@ -2,22 +2,26 @@
 <html lang="en" dir="ltr">
   <head>
 <%- include ('./partials/head.ejs') %>
+<link rel="stylesheet" href="/css/cart.css">
   </head>
 <%- include ('./partials/nav.ejs') %>
   <body>
+    <%let total = 0%>
+
     <h1>Your Cart</h1>
     <% for (let i = 0; i < merchandise.length; i++) {%>
-          <tr>
-            <td>
-              <%=merchandise[i].time%>
-            </td>
+          <div class="">
+            <a href="/schedule/<%=merchandise[i].name%>">
+              <%=merchandise[i].name%>
+            </a><br/>
+            <p>Price: $<%=merchandise[i].price%></p></br>
+            <img src="<%=merchandise[i].image%>" alt=""><br/>
+          </div>
 
-            <td>
-              <a href="/schedule/<%=merchandise[i].id%>">
-                <%=merchandise[i].id%>
-              </a>
-            </td>
-          </tr>
+
+          <%total += merchandise[i].price%>
       <%}%>
+
+      <h4>Your total is $<%=total%></h4>
   </body>
 </html>
