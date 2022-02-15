@@ -155,6 +155,13 @@ app.get('/' , (req, res) => {
     })
   })
 
+  //delete Routes
+  app.delete('/cart/:id', (req, res) => {
+    Merch.findByIdAndRemove(req.params.id, (err, data) => {
+      res.redirect('/cart')
+    })
+  })
+
 
 
 

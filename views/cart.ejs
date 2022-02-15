@@ -17,11 +17,20 @@
             <p>Price: $<%=merchandise[i].price%></p></br>
             <img src="<%=merchandise[i].image%>" alt=""><br/>
           </div>
+          <form action='/cart/<%=merchandise[i].id%>?_method=DELETE' method='POST'>
+            <input type="submit" value="Remove from cart" />
+          </form>
 
 
           <%total += merchandise[i].price%>
       <%}%>
 
-      <h4>Your total is $<%=total%></h4>
+      <h4>
+        <%if(total <= 0){%>
+          <h4>No items in cart</h4>
+      <%} else {%>
+        <h4>Your total is $<%=total%></h4>
+        <%}%>
+      </h4>
   </body>
 </html>
