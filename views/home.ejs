@@ -48,7 +48,7 @@
                 <td>
                   <%=classes[i].capacity%>
                 </td>
-                <% if(currentUser && isAdmin){%>
+                <% if(currentUser && isAdmin === true){%>
                   <td>
                     <button type="button" name="button">
                       <a href="/schedule/<%=classes[i].id%>/edit">Edit</a>
