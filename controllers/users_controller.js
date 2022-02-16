@@ -14,7 +14,9 @@ users.post('/', (req, res) => {
 })
 
 users.get('/newUser', (req, res) => {
-  res.render('./users/newUser.ejs')
+  res.render('./users/newUser.ejs', {
+    tabTitle: 'Create Account'
+  })
 })
 
 module.exports = users

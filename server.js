@@ -10,7 +10,8 @@ require('dotenv').config()
 const Class = require('./models/schedule.js')
 const Merch = require('./models/merch.js')
 const userController = require('./controllers/users_controller.js')
-// const session = require('express-session')
+const session = require('express-session')
+const sessionsController = require('./controllers/sessions_controller.js')
 //___________________
 //Port
 //___________________
@@ -49,6 +50,16 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 
 app.use('/users', userController)
 
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+)
+
+app.use('/sessions', sessionsController)
+
 
 //___________________
 // Routes
@@ -75,7 +86,8 @@ app.get('/schedule/:id/edit', (req, res) => {
       'edit.ejs',
       {
         course:foundClass,
-        tabTitle: 'Edit'
+        tabTitle: 'Edit',
+        currentUser: req.session.currentUser
       })
   })
 })
@@ -83,7 +95,8 @@ app.get('/schedule/:id/edit', (req, res) => {
 // Add new class page
 app.get('/schedule/newClass', (req, res) => {
   res.render('new.ejs',{
-    tabTitle:'Create'
+    tabTitle:'Create',
+    currentUser: req.session.currentUser
   }
 
 )
@@ -95,7 +108,8 @@ app.get('/schedule' , (req, res) => {
     res.render(
       'home.ejs', {
       classes: allClasses,
-      tabTitle: 'Home'
+      tabTitle: 'Schedule',
+      currentUser: req.session.currentUser
     });
   })
 });
@@ -106,7 +120,8 @@ app.get('/schedule/:id', (req,res) => {
     res.render(
       'show.ejs',{
     classes:foundClass,
-    tabTitle: (req.params.className)
+    tabTitle: (req.params.className),
+    currentUser: req.session.currentUser
     })
   })
 })
@@ -121,14 +136,16 @@ app.post('/schedule', (req, res) => {
 app.get('/' , (req, res) => {
     res.render(
       'index.ejs', {
-      tabTitle: 'Home'
+      tabTitle: 'Home',
+      currentUser: req.session.currentUser
     });
   })
 
 //get route - static pricing page
   app.get('/pricing', (req, res) => {
     res.render('price.ejs', {
-      tabTitle: 'Pricing'
+      tabTitle: 'Pricing',
+      currentUser: req.session.currentUser
     })
   })
 
@@ -136,7 +153,8 @@ app.get('/' , (req, res) => {
 // get route merch page
   app.get('/merchandise', (req, res) => {
     res.render('merch.ejs', {
-      tabTitle: 'Merchandise'
+      tabTitle: 'Merchandise',
+      currentUser: req.session.currentUser
     })
   })
 
@@ -146,7 +164,8 @@ app.get('/' , (req, res) => {
     Merch.find({}, (err,foundMerch) => {
       res.render('cart.ejs',{
         merchandise:foundMerch,
-        tabTitle: 'Cart'
+        tabTitle: 'Cart',
+        currentUser: req.session.currentUser
       })
     })
     })

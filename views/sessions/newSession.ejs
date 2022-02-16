@@ -4,6 +4,7 @@
 <%- include ('../partials/head.ejs') %>
   </head>
   <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">Gym Logo</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,12 +30,11 @@
         </ul>
       </div>
     </nav>
-    <h1>New User</h1>
-    <form action="/users/" method="POST">
-      Name: <input type="text" name="name"><br/>
-      Username: <input type="text" name="username"><br/>
-      Password: <input type="password" name="password" value=""><br/>
-    <input type="submit" value="Create Account">
+    <h1>Welcome Back</h1>
+  <form action="/sessions/" method="POST">
+  username: <input type="text" name="username" value="">
+  password: <input type="text" name="password" value="">
+  <input type="submit" name="" value="login">
 </form>
   </body>
 </html>
