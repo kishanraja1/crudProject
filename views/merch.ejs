@@ -6,6 +6,10 @@
       <%- include ('./partials/nav.ejs') %>
   <body>
     <h1>Merchandise</h1>
+    <%if(!currentUser) {%>
+      <h2>Please <a href="/users/newUser">create an account</a> or <a href="/sessions/new">login</a> to purchase merchandise</h2>
+    <%}%>
+
 
     <form action="/cart" method="POST">
       <input type="hidden" name="name" value="Shirt">
@@ -14,7 +18,9 @@
       <h4>$15</h4>
       <img src="shirt.jpeg" alt=""><br/>
       <input type="hidden" name="image" value="shirt.jpeg">
-      <input type="submit" value="Add To Cart"><br>
+      <% if(currentUser){%>
+        <input type="submit" value="Add To Cart"><br>
+      <%}%>
     </form>
 
     <form action="/cart" method="POST">
@@ -24,7 +30,10 @@
       <h4>$30</h4>
       <img src="gloves.jpeg" alt=""><br/>
       <input type="hidden" name="image" value="gloves.jpeg">
-      <input type="submit" value="Add To Cart"><br>
+      <% if(currentUser){%>
+        <input type="submit" value="Add To Cart"><br>
+      <%}%>
+
     </form>
 
     <form action="/cart" method="POST">
@@ -34,7 +43,9 @@
       <h4>$80</h4>
       <img src="gi.jpeg" alt=""><br/>
       <input type="hidden" name="image" value="gi.jpeg">
-      <input type="submit" value="Add To Cart"><br>
+      <% if(currentUser){%>
+        <input type="submit" value="Add To Cart"><br>
+      <%}%>
     </form>
 
 
