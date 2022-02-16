@@ -9,6 +9,8 @@ const db = mongoose.connection;
 require('dotenv').config()
 const Class = require('./models/schedule.js')
 const Merch = require('./models/merch.js')
+const userController = require('./controllers/users_controller.js')
+// const session = require('express-session')
 //___________________
 //Port
 //___________________

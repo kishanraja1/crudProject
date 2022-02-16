@@ -59,7 +59,7 @@
 
       </tbody>
   </table>
-  <button type="button" name="button" id="ascend">Instructor Ascending</button>
+  <!-- <button type="button" name="button" id="ascend">Instructor Ascending</button> -->
 
 
 
@@ -367,21 +367,21 @@ $(document).ready(function(){ $(".accordion table").hide();
  });
 });
 
-const sortInstructorAscending = () => {
-  classes.sort(function(a, b) {
-  let nameA = a.instructor.toUpperCase(); // ignore upper and lowercase
-  let nameB = b.instructor.toUpperCase(); // ignore upper and lowercase
-  if (nameA < nameB) {
-    return -1;
-  }
-  if (nameA > nameB) {
-    return 1;
-  }
-
-  // names must be equal
-  return 0;
-});
-}
+// const sortInstructorAscending = () => {
+//   classes.sort(function(a, b) {
+//   let nameA = a.instructor.toUpperCase(); // ignore upper and lowercase
+//   let nameB = b.instructor.toUpperCase(); // ignore upper and lowercase
+//   if (nameA < nameB) {
+//     return -1;
+//   }
+//   if (nameA > nameB) {
+//     return 1;
+//   }
+//
+//   // names must be equal
+//   return 0;
+// });
+// }
 
 
 </script>
