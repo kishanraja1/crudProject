@@ -109,7 +109,8 @@ app.get('/schedule' , (req, res) => {
       'home.ejs', {
       classes: allClasses,
       tabTitle: 'Schedule',
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      isAdmin: req.session.isAdmin
     });
   })
 });

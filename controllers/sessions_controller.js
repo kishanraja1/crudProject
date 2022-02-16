@@ -27,7 +27,8 @@ sessions.post('/', (req, res) => {
       // now let's check if passwords match
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         // add the user to our session
-        req.session.currentUser = foundUser
+        req.session.currentUser = foundUser,
+        req.session.isAdmin = true
         // redirect back to our home page
         res.redirect('/')
       } else {
