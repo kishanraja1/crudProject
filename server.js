@@ -91,7 +91,8 @@ app.get('/schedule/:id/edit', (req, res) => {
       {
         course:foundClass,
         tabTitle: 'Edit',
-        currentUser: req.session.currentUser
+        currentUser: req.session.currentUser,
+        isAdmin: req.session.isAdmin
       })
   })
 })
@@ -100,7 +101,8 @@ app.get('/schedule/:id/edit', (req, res) => {
 app.get('/schedule/newClass', (req, res) => {
   res.render('new.ejs',{
     tabTitle:'Create',
-    currentUser: req.session.currentUser
+    currentUser: req.session.currentUser,
+    isAdmin: req.session.isAdmin
   }
 
 )
@@ -126,7 +128,8 @@ app.get('/schedule/:id', (req,res) => {
       'show.ejs',{
     classes:foundClass,
     tabTitle: (req.params.className),
-    currentUser: req.session.currentUser
+    currentUser: req.session.currentUser,
+    isAdmin: req.session.isAdmin
     })
   })
 })
@@ -144,7 +147,8 @@ app.get('/' , (req, res) => {
     res.render(
       'index.ejs', {
       tabTitle: 'Home',
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      isAdmin: req.session.isAdmin
     });
   })
 
@@ -152,7 +156,8 @@ app.get('/' , (req, res) => {
   app.get('/pricing', (req, res) => {
     res.render('price.ejs', {
       tabTitle: 'Pricing',
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      isAdmin: req.session.isAdmin
     })
   })
 
@@ -161,7 +166,8 @@ app.get('/' , (req, res) => {
   app.get('/merchandise', (req, res) => {
     res.render('merch.ejs', {
       tabTitle: 'Merchandise',
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      isAdmin: req.session.isAdmin
     })
   })
 
@@ -172,7 +178,8 @@ app.get('/' , (req, res) => {
       res.render('cart.ejs',{
         merchandise:foundMerch,
         tabTitle: 'Cart',
-        currentUser: req.session.currentUser
+        currentUser: req.session.currentUser,
+        isAdmin: req.session.isAdmin
       })
     })
     })
