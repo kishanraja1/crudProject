@@ -4,11 +4,11 @@ const users = express.Router()
 const User = require('../models/users.js')
 
 
-
+////////// create user
 users.post('/', (req, res) => {
   if (req.body.isAdmin === 'on') {
     //req.body needs the app.use at the top
-    //if statement to change readytoeat value to true or false, instead of on
+    //if statement to change isAdmin value to true or false, instead of on
     req.body.isAdmin = true
   } else {
     req.body.isAdmin = false
@@ -20,6 +20,8 @@ users.post('/', (req, res) => {
   })
 })
 
+
+//////// create account page
 users.get('/newUser', (req, res) => {
   res.render('./users/newUser.ejs', {
     tabTitle: 'Create Account'

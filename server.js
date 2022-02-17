@@ -48,8 +48,10 @@ app.use(express.json());// returns middleware that only parses JSON - may or may
 //use method override
 app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 
+//creating route for user controller routes
 app.use('/users', userController)
 
+//copied from markdown. Not sure what it does
 app.use(
   session({
     secret: process.env.SECRET,
@@ -58,6 +60,7 @@ app.use(
   })
 )
 
+//creating route for session controller routes
 app.use('/sessions', sessionsController)
 
 
@@ -66,7 +69,7 @@ app.use('/sessions', sessionsController)
 //___________________
 
 ///////////////// Schedule Related Routes ///////////////////////
-
+//edit route
 app.put('/schedule/:id', (req, res) => {
     Class.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel) => {
         res.redirect('/schedule')
@@ -80,6 +83,7 @@ app.delete('/schedule/:id', (req, res) => {
   })
 })
 
+//show pages
 app.get('/schedule/:id/edit', (req, res) => {
   Class.findById(req.params.id, (err, foundClass) => {
     res.render(
@@ -102,7 +106,7 @@ app.get('/schedule/newClass', (req, res) => {
 )
 })
 
-//localhost:3000 - Home Page
+//schedule page
 app.get('/schedule' , (req, res) => {
   Class.find({}, (error, allClasses) => {
     res.render(
@@ -134,6 +138,8 @@ app.post('/schedule', (req, res) => {
   })
 })
 
+//Home Page
+
 app.get('/' , (req, res) => {
     res.render(
       'index.ejs', {
@@ -160,7 +166,7 @@ app.get('/' , (req, res) => {
   })
 
 
-
+//Showing all items in merch collection
   app.get('/cart', (req,res) => {
     Merch.find({}, (err,foundMerch) => {
       res.render('cart.ejs',{
@@ -172,7 +178,7 @@ app.get('/' , (req, res) => {
     })
 
 
-  // create new class
+  // add new item to merch collection. /cart will render
   app.post('/cart', (req, res) => {
     Merch.create(req.body, (err, createdClass) => {
       res.redirect('/cart')

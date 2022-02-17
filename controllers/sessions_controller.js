@@ -3,6 +3,10 @@ const express = require('express')
 const sessions = express.Router()
 const User = require('../models/users.js')
 
+
+
+
+//////////Log in page
 sessions.get('/new', (req, res) => {
   res.render('./sessions/newSession.ejs',
   {
@@ -10,6 +14,8 @@ sessions.get('/new', (req, res) => {
     tabTitle: 'Log in',
   })
 })
+
+////////////////Used markdown for code below
 
 // on sessions form submit (log in)
 sessions.post('/', (req, res) => {
@@ -20,11 +26,10 @@ sessions.post('/', (req, res) => {
       console.log(err)
       res.send('oops the db had a problem')
     } else if (!foundUser) {
-      // if found user is undefined/null not found etc
+      // if found user does not exist
       res.send('<a  href="/users/newUser">Sorry, no user found. Create an account </a>')
     } else {
-      // user is found yay!
-      // now let's check if passwords match
+      // check if passwords match
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         // add the user to our session
         req.session.currentUser = foundUser,
@@ -39,6 +44,8 @@ sessions.post('/', (req, res) => {
   })
 })
 
+
+///////// log out
 sessions.delete('/', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/')
